@@ -1,0 +1,21 @@
+{
+  "summary": "The meeting discussed the issue of chronically absent students, particularly on Fridays. Ideas were proposed to address this, such as hosting a pancake breakfast to encourage attendance. Additionally, the group discussed the increasing number of sick students and decided to post health tips to prevent the spread of illness. A specific student, John Smith, was highlighted for missing seven days of school, and it was suggested he speak with the guidance counselor. The group also plans to help John's family by finding free or low-cost childcare resources.",
+  "todo_work": [
+    {
+      "assignee": "Student Success Team",
+      "work": ["Organize a pancake breakfast for next Friday to encourage attendance."]
+    },
+    {
+      "assignee": "Student Success Team",
+      "work": ["Create and post health tips around the school to prevent the spread of illness."]
+    },
+    {
+      "assignee": "Meeting Organizer",
+      "work": ["Refer John Smith to the guidance counselor to discuss his stress and attendance issues."]
+    },
+    {
+      "assignee": "Meeting Organizer",
+      "work": ["Research and share free or low-cost childcare resources with John Smith's family."]
+    }
+  ]
+}

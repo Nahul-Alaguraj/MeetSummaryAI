@@ -1,0 +1,43 @@
+<think>
+Okay, so the user has given me a query where they want me to act as a meeting summarizer API. They provided a specific JSON schema to follow, which includes "summary" and "todo_work" with specific sub-keys. They also included an example of a meeting transcript and the expected JSON output. 
+
+First, I need to understand the exact requirements. The user emphasized strictly following the JSON schema without any extra keys. That means I have to be careful not to add anything beyond what's specified. The schema includes a summary field and a todo_work array, each with their own sub-fields. 
+
+Looking at the meeting transcript, I need to extract the key points. The main issues discussed were the high Friday absenteeism, the idea of a pancake breakfast, the health concerns with the approaching flu season, and John Smith's situation. 
+
+For the summary, I should condense these points into a concise paragraph. I'll mention the trend of Friday absences, the pancake breakfast idea, the health posters, and John's stress due to family responsibilities. Also, the plan to find childcare resources for his family.
+
+Next, the todo_work section needs to list each action item with an assignee and the specific work. The first task is organizing the pancake breakfast, assigned to the Student Success Team. The second is creating health posters, also assigned to the same team. The third is referring John to the guidance counselor, assigned to the meeting organizer. The fourth is researching childcare resources, assigned to the organizer as well.
+
+I need to make sure each todo_work entry has "assignee" and "work" keys, with "work" being an array of strings. I should avoid any additional keys or nesting that wasn't specified. 
+
+I also need to ensure that the JSON is properly formatted, with correct commas and brackets. No markdown, just plain JSON. 
+
+So, putting it all together, I'll structure the summary to capture all main points and then list each action item clearly under todo_work, making sure each has the correct assignee and tasks. 
+
+I think that covers everything the user asked for. I should double-check the JSON structure to make sure there are no extra keys and that everything aligns with the provided schema.
+</think>
+
+```json
+{
+  "summary": "The meeting discussed the issue of chronically absent students, particularly on Fridays. Ideas were proposed to address this, such as hosting a pancake breakfast to encourage attendance. Additionally, the group discussed the increasing number of sick students and decided to post health tips to prevent the spread of illness. A specific student, John Smith, was highlighted for missing seven days of school, and it was suggested he speak with the guidance counselor. The group also plans to help John's family by finding free or low-cost childcare resources.",
+  "todo_work": [
+    {
+      "assignee": "Student Success Team",
+      "work": ["Organize a pancake breakfast for next Friday to encourage attendance."]
+    },
+    {
+      "assignee": "Student Success Team",
+      "work": ["Create and post health tips around the school to prevent the spread of illness."]
+    },
+    {
+      "assignee": "Meeting Organizer",
+      "work": ["Refer John Smith to the guidance counselor to discuss his stress and attendance issues."]
+    },
+    {
+      "assignee": "Meeting Organizer",
+      "work": ["Research and share free or low-cost childcare resources with John Smith's family."]
+    }
+  ]
+}
+```

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Meeting Assistant</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo1.png') }}">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <h1>AI Meeting Summarizer</h1>
+        </div>
+        <p>Upload a recording or record live to get instant transcriptions, summaries, and action items!</p>
+         <!-- Dark Mode Toggle Button -->
+        <button id="darkModeToggle" class="dark-mode-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <div id="loadingScreen" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Upload & Live Recording Section -->
+    <div class="upload-record-container">
+        
+        <!-- Live Recording Section -->
+        <div class="container record-box">
+            <h2>Live Meeting Recorder</h2>
+            <p>Capture your meeting in real-time and let AI do the rest!</p>
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording" disabled>Stop Recording</button>
+            <p id="recordingStatus">Not Recording</p>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="container upload-box">
+            <h2>Upload Meeting Audio</h2>
+            <p>Already have a recorded meeting? Upload and get AI-powered insights!</p>
+            <form id="uploadForm">
+                <input type="file" name="file" id="fileInput" required>
+                <button type="submit">Upload File</button>
+            </form>
+        </div>
+        <script>
+            const form = document.getElementById('uploadForm');
+            const loadingScreen = document.getElementById("loadingScreen");
+
+            function showLoading() {
+                loadingScreen.style.display = "flex"; 
+            }
+
+            function hideLoading() {
+                loadingScreen.style.display = "none"; 
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); 
+
+                const formData = new FormData(form);  
+
+
+                showLoading();
+
+                fetch("/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())  
+                .then(data => {
+                    console.log(data);  
+                    hideLoading();  
+                    
+
+                    if (data.message) {
+                        // alert(data.message); 
+                        window.location.reload();
+                    } else if (data.error) {
+                        alert(data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    hideLoading();  // Hide the loading screen in case of an error
+                    alert("An error occurred. Please try again.");
+                });
+            });
+
+        </script>
+    </div>
+
+    <!-- AI-Generated Insights -->
+    <div class="insights-container">
+        <div class="box">
+            <h3>Transcription</h3>
+            <div class="info">Shows full text of the meeting</div>
+            <div class="generated">
+                <p id="transcriptionText">{{file_contents}}</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Summary</h3>
+            <div class="info">Condensed key points of the meeting</div>
+            <div class="generated">
+                <!-- <p id="summaryText">No summary available yet.</p> -->
+                <p id="summaryText">{{ data["summary"] }}</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Action Items</h3>
+            <div class="info">Key tasks assigned from the meeting</div>
+            <div class="generated" id="actions">
+                <ul id="actionsList">
+                    <!-- <li>No action items yet.</li> -->
+                    {% for jobs in data["todo_work"] %}
+                    {% if jobs == "No action items yet." %}
+                        <p>No action items yet.</p>
+                    {% else %}
+                        <u><h3>Assignee: {{ jobs["assignee"] }}</h3></u>
+                        {% for work in jobs["work"] %}
+                        <li><div> {{ work }}</div></li>
+                        {% endfor %}
+                        <br>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
