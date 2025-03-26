@@ -1,32 +1,77 @@
+# AI-Powered Meeting Summarization
 
-![Logo](https://raw.githubusercontent.com/anika1604/AI-powered-Meeting-Summarization/refs/heads/main/static/logo.png)
+## 📌 Project Overview
 
+This GitHub repository provides an AI-powered system that processes meeting audio and generates:
 
-# AI-powered-Meeting-Summarization
+1. **Transcripts** – Converts speech to text.
+2. **Summaries** – Extracts key points from the meeting.
+3. **Action Items** – Identifies tasks and decisions discussed.
 
-Our project accepts voice recording of recorded meetings and is capable of generating summary, transcripts and actionable items discussed in the meeting.
+## 🚀 Features
 
-No more wasting time in meetings
+- **Automatic Speech-to-Text Conversion**
 
+- **AI-Generated Meeting Summaries**
 
-## Run locally
+- **Task Extraction for Easy Follow-ups**
 
-Run this project locally:
+**🛠️ Setup & Installation**
+
+### **1️⃣ Clone the Repository**
 
 ```bash
-  pip install virtualenv
-  virtualenv env
-  .\env\Scripts\activate.bat
+git clone https://github.com/your-username/AI-powered-Meeting-Summarization.git
+cd AI-powered-Meeting-Sum
 ```
-Then install the requirements:
-```bash
-    pip install -r requirements.txt
-```
-Finally start the server:
-```bash
-    python app.py
-```
-    
-## 🚀 About Us
-We are aspiring software engineers who aim to make peoples' lives easier with the super power of AI
 
+ma**Database (if applicable):** SQLite / PostgreSQLrization
+
+### **2️⃣ Create a Virtual Environment**
+
+```bash
+pip install virtualenv
+virtualenv env
+```
+
+For Windows:
+
+```bash
+.\env\Scripts\activate.bat
+```
+
+For macOS/Linux:
+
+```bash
+source env/bin/activate
+```
+
+### **3️⃣ Install Dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+### **4️⃣ Start the Server**
+
+```bash
+python app.py
+```
+
+## 📌 Usage
+
+- Upload meeting audio via the web interface or API.
+- Let the AI process the audio.
+- Retrieve transcripts, summaries, and action items.
+
+## 🔥 Future Enhancements
+
+- **Speaker Diarization (Identifying Speakers in the Meeting)**
+- **Integration with Trello/Notion for Task Management**
+- **Multi-Language Support for Transcription & Summarization**
+
+## 🤝 Contributing
+
+Feel free to fork this repo, report issues, or submit pull requests!
+
+##
